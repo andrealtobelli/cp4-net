@@ -1,0 +1,6 @@
+@cp4_net_HostAddress = http://localhost:5144
+
+GET {{cp4_net_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

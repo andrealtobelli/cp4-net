@@ -1,0 +1,129 @@
+### GeoMaster API - Exemplos de Requisições
+
+### 1. Calcular área de um círculo
+POST http://localhost:8080/api/v1/calculos/area
+Content-Type: application/json
+
+{
+  "tipoForma": "circulo",
+  "parametros": {
+    "raio": 5.0
+  }
+}
+
+### 2. Calcular perímetro de um retângulo
+POST http://localhost:8080/api/v1/calculos/perimetro
+Content-Type: application/json
+
+{
+  "tipoForma": "retangulo",
+  "parametros": {
+    "largura": 10.0,
+    "altura": 8.0
+  }
+}
+
+### 3. Calcular volume de uma esfera
+POST http://localhost:8080/api/v1/calculos/volume
+Content-Type: application/json
+
+{
+  "tipoForma": "esfera",
+  "parametros": {
+    "raio": 3.0
+  }
+}
+
+### 4. Calcular área superficial de uma esfera
+POST http://localhost:8080/api/v1/calculos/area-superficial
+Content-Type: application/json
+
+{
+  "tipoForma": "esfera",
+  "parametros": {
+    "raio": 4.0
+  }
+}
+
+### 5. Verificar se círculo está contido em retângulo (SIM)
+POST http://localhost:8080/api/v1/validacoes/forma-contida
+Content-Type: application/json
+
+{
+  "formaExterna": {
+    "tipoForma": "retangulo",
+    "parametros": {
+      "largura": 10.0,
+      "altura": 10.0
+    }
+  },
+  "formaInterna": {
+    "tipoForma": "circulo",
+    "parametros": {
+      "raio": 5.0
+    }
+  }
+}
+
+### 6. Verificar se círculo está contido em retângulo (NÃO)
+POST http://localhost:8080/api/v1/validacoes/forma-contida
+Content-Type: application/json
+
+{
+  "formaExterna": {
+    "tipoForma": "retangulo",
+    "parametros": {
+      "largura": 10.0,
+      "altura": 10.0
+    }
+  },
+  "formaInterna": {
+    "tipoForma": "circulo",
+    "parametros": {
+      "raio": 6.0
+    }
+  }
+}
+
+### 7. Verificar se retângulo está contido em círculo (SIM)
+POST http://localhost:8080/api/v1/validacoes/forma-contida
+Content-Type: application/json
+
+{
+  "formaExterna": {
+    "tipoForma": "circulo",
+    "parametros": {
+      "raio": 2.0
+    }
+  },
+  "formaInterna": {
+    "tipoForma": "retangulo",
+    "parametros": {
+      "largura": 2.0,
+      "altura": 3.0
+    }
+  }
+}
+
+### 8. Teste de validação - raio negativo (deve retornar erro 400)
+POST http://localhost:8080/api/v1/calculos/area
+Content-Type: application/json
+
+{
+  "tipoForma": "circulo",
+  "parametros": {
+    "raio": -5.0
+  }
+}
+
+### 9. Teste de validação - tipo de forma inválido (deve retornar erro 400)
+POST http://localhost:8080/api/v1/calculos/area
+Content-Type: application/json
+
+{
+  "tipoForma": "triangulo",
+  "parametros": {
+    "base": 5.0,
+    "altura": 3.0
+  }
+}
